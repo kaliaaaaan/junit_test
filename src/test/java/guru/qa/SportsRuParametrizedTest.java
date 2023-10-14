@@ -30,13 +30,13 @@ public class SportsRuParametrizedTest {
 
     static Stream<Arguments> sportRuTest() {
         return Stream.of(
-                Arguments.of(Sports.football, List.of("Новости", "Посты", "Матчи", "РПЛ", "Фэнтези", "АПЛ", "Лига чемпионов", "Евро-2024")),
-                Arguments.of(Sports.hockey, List.of("Новости", "Посты", "Матчи","НХЛ", "КХЛ", "ЧМХ", "Фэнтези", "Команды", "Турниры"))
+                Arguments.of(Sports.football, List.of("РќРѕРІРѕСЃС‚Рё", "РџРѕСЃС‚С‹", "РњР°С‚С‡Рё", "Р РџР›", "Р¤СЌРЅС‚РµР·Рё", "РђРџР›", "Р›РёРіР° С‡РµРјРїРёРѕРЅРѕРІ", "Р•РІСЂРѕ-2024")),
+                Arguments.of(Sports.hockey, List.of("РќРѕРІРѕСЃС‚Рё", "РџРѕСЃС‚С‹", "РњР°С‚С‡Рё","РќРҐР›", "РљРҐР›", "Р§РњРҐ", "Р¤СЌРЅС‚РµР·Рё", "РљРѕРјР°РЅРґС‹", "РўСѓСЂРЅРёСЂС‹"))
         );
     }
 
     @MethodSource
-    @DisplayName("Проверка меню для разных страниц")
+    @DisplayName("РџСЂРѕРІРµСЂРєР° РјРµРЅСЋ РґР»СЏ СЂР°Р·РЅС‹С… СЃС‚СЂР°РЅРёС†")
     @ParameterizedTest
     void sportRuTest(Sports sports, List<String> expectedButtons){
 
@@ -47,8 +47,8 @@ public class SportsRuParametrizedTest {
 
     @CsvFileSource(resources = "/sportsRuSearchLeague.csv")
 
-    @DisplayName("Проверка поиска на сайте sports.ru")
-    @ParameterizedTest (name = "При вводе в поиске названия лиги {0} отобразилась страница с наименованием страны в которой проходит лига {1}")
+    @DisplayName("РџСЂРѕРІРµСЂРєР° РїРѕРёСЃРєР° РЅР° СЃР°Р№С‚Рµ sports.ru")
+    @ParameterizedTest (name = "РџСЂРё РІРІРѕРґРµ РІ РїРѕРёСЃРєРµ РЅР°Р·РІР°РЅРёСЏ Р»РёРіРё {0} РѕС‚РѕР±СЂР°Р·РёР»Р°СЃСЊ СЃС‚СЂР°РЅРёС†Р° СЃ РЅР°РёРјРµРЅРѕРІР°РЅРёРµРј СЃС‚СЂР°РЅС‹ РІ РєРѕС‚РѕСЂРѕР№ РїСЂРѕС…РѕРґРёС‚ Р»РёРіР° {1}")
     void successfulSearch(String searhLeague, String nameCountry) {
 
         $(".navigation-search__toggle").click();
@@ -58,7 +58,7 @@ public class SportsRuParametrizedTest {
 
 
     @ValueSource(
-            strings = {"ЛА Лига", "МЛС", "eredivisie"}
+            strings = {"Р›Рђ Р›РёРіР°", "РњР›РЎ", "eredivisie"}
     )
 
     @Tags({
@@ -66,12 +66,12 @@ public class SportsRuParametrizedTest {
             @Tag("search")
     })
 
-    @DisplayName("Проверка поиска на сайте sports.ru")
-    @ParameterizedTest(name = "Результат поиска {0} не пустой")
+    @DisplayName("РџСЂРѕРІРµСЂРєР° РїРѕРёСЃРєР° РЅР° СЃР°Р№С‚Рµ sports.ru")
+    @ParameterizedTest(name = "Р РµР·СѓР»СЊС‚Р°С‚ РїРѕРёСЃРєР° {0} РЅРµ РїСѓСЃС‚РѕР№")
     void searchResultsShouldNotBeEmpty(String searhLeague2) {
         $(".navigation-search__toggle").click();
         $(".navigation-search__input").setValue(searhLeague2).pressEnter();
-        $(".search-result").shouldNotHave(text("Ничего не найдено"));
+        $(".search-result").shouldNotHave(text("РќРёС‡РµРіРѕ РЅРµ РЅР°Р№РґРµРЅРѕ"));
     }
 
 
