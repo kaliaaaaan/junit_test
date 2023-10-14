@@ -39,7 +39,6 @@ public class SportsRuParametrizedTest {
     @DisplayName("Проверка меню для разных страниц")
     @ParameterizedTest
     void sportRuTest(Sports sports, List<String> expectedButtons){
-
         $$(".navigation-navbar__list a").find(href(sports.getSport())).click();
         $$(".navigation-navbar__list a").filter(visible).should(CollectionCondition.texts(expectedButtons));
 
