@@ -13,6 +13,7 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.open;
 
+
 public class SportsRuParametrizedTest {
 
     @BeforeAll
@@ -26,6 +27,7 @@ public class SportsRuParametrizedTest {
     void setUp() {
         open("https://sports.ru/");
     }
+
     static Stream<Arguments> sportRuTest() {
         return Stream.of(
                 Arguments.of(Sports.FOOTBALL, List.of("Новости", "Посты", "Матчи", "РПЛ", "Фэнтези", "АПЛ", "Лига чемпионов", "Евро-2024")),
@@ -33,10 +35,11 @@ public class SportsRuParametrizedTest {
         );
     }
 
-    @MethodSource ("sportRuTest")
+    @MethodSource
     @DisplayName("Проверка меню для разных страниц")
     @ParameterizedTest
     void sportRuTest(Sports sports, List<String> expectedButtons){
+
         $$(".navigation-navbar__list a").find(href(sports.getSport())).click();
         $$(".navigation-navbar__list a").filter(visible).should(CollectionCondition.texts(expectedButtons));
 
