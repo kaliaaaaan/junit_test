@@ -1,5 +1,14 @@
 package guru.qa;
 
 public enum Sports {
-    football,hockey
+    FOOTBALL ("football"),
+    HOCKEY ("hockey");
+
+    private final String sport;
+    Sports(String value) {
+        this.sport = value;
+    }
+    public String getSport() {
+        return sport;
+    }
 }
